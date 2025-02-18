@@ -1,3 +1,9 @@
 package com.ceph.pulsepoint.domain.model
 
-data class Source()
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Source(
+    val id: String?,
+    val name: String
+)
