@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.ceph.pulsepoint.domain.model.Article
 import com.ceph.pulsepoint.domain.repository.PulseRepository
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,6 +19,7 @@ class FavoriteViewModel(
 
 
     val favoriteArticles: StateFlow<PagingData<Article>> = repository.getFavoriteNews()
+        .cachedIn(viewModelScope)
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),
